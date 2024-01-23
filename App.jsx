@@ -1,29 +1,35 @@
-import { StyleSheet, View, Text } from "react-native";
-import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
-// import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { Pressable, StyleSheet, Text, Switch } from "react-native";
+import React, { useEffect, useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Home from "./Screens/Home";
+import Details from "./Screens/Details";
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home">
-          {(props) => (
-            <View style={styles.container}>
-              <Text>Home</Text>
-            </View>
-          )}
-        </Stack.Screen>
-        <Stack.Screen name="Details">
-          {(props) => (
-            <View style={styles.container}>
-              <Text>Details</Text>
-            </View>
-          )}
-        </Stack.Screen>
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: "#1A201F",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      >
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{
+            title: "Home",
+          }}
+        />
+        <Stack.Screen name="Details" component={Details} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -32,7 +38,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#4F4D50",
     alignItems: "center",
     justifyContent: "space-around",
   },
