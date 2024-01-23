@@ -1,35 +1,31 @@
-import {
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  Button,
-  Image,
-  ActivityIndicator,
-} from "react-native";
+import { StyleSheet, View, Text } from "react-native";
+import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import Home from "./Home";
-import { NavigationContainer } from "@react-navigation/native";
+// import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+const Stack = createStackNavigator();
 
 export default function App() {
-  const [isLoading, setLoading] = useState(false);
-
   return (
-    <SafeAreaView style={styles.container}>
-      <NavigationContainer></NavigationContainer>
-      <Text style={styles.text}>Les Lp Sucrés au Sucre d'Emilien</Text>
-      <Image
-        style={styles.image}
-        onLoad={() => console.log("Image chargée")}
-        source={{
-          uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJlmLLdQaVY9ZzMda3jHiK9npgpnr1EIJ69w&usqp=CAU",
-        }}
-      />
-      <ActivityIndicator size="large" color="#00ff00" animating={isLoading} />
-      <Button
-        title="Cliquez ici pour voir les Lp Sucrés"
-        onPress={() => setLoading(!isLoading)}
-      />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home">
+          {(props) => (
+            <View style={styles.container}>
+              <Text>Home</Text>
+            </View>
+          )}
+        </Stack.Screen>
+        <Stack.Screen name="Details">
+          {(props) => (
+            <View style={styles.container}>
+              <Text>Details</Text>
+            </View>
+          )}
+        </Stack.Screen>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
@@ -39,20 +35,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#4F4D50",
     alignItems: "center",
     justifyContent: "space-around",
-  },
-  text: {
-    color: "white",
-    fontSize: 20,
-  },
-
-  button: {
-    backgroundColor: "red",
-    color: "white",
-  },
-  image: {
-    width: 200,
-    height: 200,
-    borderRadius: 100,
-    resizeMode: "cover",
   },
 });
