@@ -1,30 +1,15 @@
-export const catégories = [
+export const users = [
   {
-    Dev: [
-      "Développement web",
-      "Développement mobile",
-      "Développement logiciel",
-      "Développement de jeux",
-      "Développement de bases de données",
-      "Développement de bureaux",
-      "Développement de systèmes embarqués",
-      "Développement de scripts",
-      "Développement de réseaux",
-      "Développement de données",
-      "Développement de sécurité",
-    ],
+    id: 1,
+    name: "mmi",
+    password: "mmi",
+    email: "mmi@mmi.com",
   },
   {
-    Com: ["Rédaction", "Traduction", "Transcription", "Sous-titrage"],
-  },
-  {
-    Audiovisuel: [
-      "Montage vidéo",
-      "Production vidéo",
-      "Production audio",
-      "Production musicale",
-      "Production audiovisuelle",
-      "Production de podcasts",
-    ],
+    id: 2,
+    name: "Ervin Howell",
+    username: "Antonette",
+    email: "a@a.com",
+    password: "4321",
   },
 ];
