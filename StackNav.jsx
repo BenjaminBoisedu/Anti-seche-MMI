@@ -1,8 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useState } from "react";
 
 export default function StackNav({ navigation }) {
+  const [login, setLogin] = useState(false);
+
   return (
     <View style={styles.TabNavContainer}>
       <View style={styles.TabNav}>
@@ -13,7 +16,7 @@ export default function StackNav({ navigation }) {
           <Ionicons
             name="book"
             size={24}
-            color="black"
+            color="#1A201F"
             onPress={() => navigation.navigate("Chapitres")}
           />
         </Text>
@@ -37,7 +40,7 @@ export default function StackNav({ navigation }) {
           onPress={() => navigation.navigate("Login")}
         >
           <Ionicons
-            name="log-out"
+            name={login ? "person" : "person-outline"}
             size={24}
             color="black"
             onPress={() => navigation.navigate("Login")}
@@ -56,8 +59,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     flexDirection: "row",
     borderTopLeftRadius: 50,
-    borderTopColor: "blue",
-    borderTopWidth: 5,
+
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+    height: 75,
   },
   TabNav: {
     flex: 1,

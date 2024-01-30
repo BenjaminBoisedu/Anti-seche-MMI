@@ -1,5 +1,13 @@
 import React from "react";
-import { View, Text, StyleSheet, Pressable, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  TextInput,
+  Modal,
+} from "react-native";
+import RegisterModal from "./RegisterModal";
 
 export default function LoginForm({ navigation }) {
   return (
@@ -23,6 +31,7 @@ export default function LoginForm({ navigation }) {
             Login
           </Text>
         </Pressable>
+        <RegisterModal />
       </View>
     </View>
   );
@@ -35,7 +44,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   formContainer: {
-    flex: 0.5,
+    flex: 0.6,
     backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
@@ -94,8 +103,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "column",
     borderRadius: 10,
-    marginBottom: 20,
-    marginTop: 20,
   },
   button: {
     alignItems: "center",

@@ -16,13 +16,7 @@ export default function Social() {
             style={styles.Google}
             onPress={() => navigation.navigate("Home")}
           >
-            <Ionicons
-              name="logo-google"
-              size={35}
-              color="
-              black
-              "
-            />
+            <Ionicons name="logo-google" size={35} color="black" />
           </Pressable>
         </View>
         <View style={styles.TwitterContainer}>
