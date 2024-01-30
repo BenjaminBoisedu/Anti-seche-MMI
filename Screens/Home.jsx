@@ -1,38 +1,100 @@
 import React from "react";
-import { SafeAreaView, Text, StyleSheet, View, ScrollView } from "react-native";
+import {
+  SafeAreaView,
+  Text,
+  StyleSheet,
+  View,
+  ScrollView,
+  Switch,
+  Pressable,
+} from "react-native";
+import { useState } from "react";
 import StackNav from "../StackNav";
+import { Ionicons } from "@expo/vector-icons";
 export default function Home({ navigation }) {
-  const getMoviesFromApiAsync = async () => {
-    try {
-      const response = await fetch("https://reactnative.dev/movies.json");
-      const json = await response.json();
-      return json.movies;
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const [DarkMode, setDarkMode] = useState(false);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={
+        DarkMode
+          ? styles.containe
+          : [styles.container, { backgroundColor: "#F4EEE0" }]
+      }
+    >
       <ScrollView style={styles.MainView}>
         <Text style={styles.text}>
-          Bienvenue sur l'application Anti-sèche MMI
+          <View style={styles.header}>
+            <View style={styles.headerText}>
+              <Text
+                style={
+                  DarkMode
+                    ? [styles.text, { color: "white" }]
+                    : [styles.text, { color: "black" }]
+                }
+              >
+                Bienvenue sur l'Anti-sèche MMI
+              </Text>
+            </View>
+            <View style={styles.darkmode}>
+              <Pressable
+                onPress={() => setDarkMode(!DarkMode)}
+                style={styles.animation}
+              >
+                <Ionicons
+                  name={DarkMode ? "moon" : "sunny"}
+                  size={30}
+                  color={DarkMode ? "yellow" : "black"}
+                />
+              </Pressable>
+            </View>
+          </View>
         </Text>
-        <View style={styles.contentContainer}>
+        <View
+          style={
+            DarkMode
+              ? [styles.contentContainer, { backgroundColor: "#1A201F" }]
+              : [styles.contentContainer, { backgroundColor: "#F4EEE0" }]
+          }
+        >
           <View style={styles.gridContainer}>
             <View style={styles.gridItem}>
-              <Text style={styles.text}>Chapitres</Text>
+              <Text
+                style={
+                  DarkMode
+                    ? [styles.text, { color: "white" }]
+                    : [styles.text, { color: "black" }]
+                }
+              >
+                Cours
+              </Text>
             </View>
             <View style={styles.gridItem2}>
-              <Text style={styles.text}>Quiz</Text>
+              <Text
+                style={
+                  DarkMode
+                    ? [styles.text, { color: "white" }]
+                    : [styles.text, { color: "black" }]
+                }
+              >
+                Quiz
+              </Text>
             </View>
             <View style={styles.gridItem3}>
-              <Text style={styles.text}>A propos</Text>
+              <Text
+                style={
+                  DarkMode
+                    ? [styles.text, { color: "white" }]
+                    : [styles.text, { color: "black" }]
+                }
+              >
+                A propos
+              </Text>
             </View>
           </View>
         </View>
       </ScrollView>
-      <StackNav navigation={navigation} />
+      <StackNav navigation={navigation} DarkMode={DarkMode} />
     </SafeAreaView>
   );
 }
@@ -46,9 +108,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-around",
   },
-  MainView: {
+  containe: {
     flex: 1,
     backgroundColor: "#1A201F",
+    alignItems: "center",
+    justifyContent: "space-around",
+  },
+  MainView: {
+    flex: 1,
+  },
+  header: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
   text: {
     color: "white",
@@ -58,6 +131,16 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   contentContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  darkmode: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  animation: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",

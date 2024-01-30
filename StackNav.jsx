@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 
-export default function StackNav({ navigation }) {
+export default function StackNav({ navigation }, { DarkMode }) {
   const [login, setLogin] = useState(false);
 
   return (
