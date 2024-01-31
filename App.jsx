@@ -7,6 +7,7 @@ import Home from "./Screens/Home";
 import Details from "./Screens/Details";
 import Login from "./Screens/Login";
 import Settings from "./Screens/Settings";
+import Chapitre from "./Screens/Chapitre";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +34,7 @@ export default function App() {
           <Stack.Screen name="Home" component={Home} DarkMode />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Chapitres" component={Details} />
+          <Stack.Screen name="Chapitre" component={Chapitre} />
           <Stack.Screen name="Settings" component={Settings} />
           <Stack.Screen name="Logout" component={Login} />
         </Stack.Navigator>

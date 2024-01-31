@@ -5,12 +5,14 @@ import {
   StyleSheet,
   View,
   ScrollView,
-  Switch,
   Pressable,
+  FlatList,
+  Image,
 } from "react-native";
 import { useState } from "react";
 import StackNav from "../StackNav";
 import { Ionicons } from "@expo/vector-icons";
+import { homeScreenData } from "../data/Data";
 export default function Home({ navigation }) {
   const [DarkMode, setDarkMode] = useState(false);
 
@@ -22,7 +24,7 @@ export default function Home({ navigation }) {
           : [styles.container, { backgroundColor: "#F4EEE0" }]
       }
     >
-      <ScrollView style={styles.MainView}>
+      <SafeAreaView style={styles.MainView}>
         <Text style={styles.text}>
           <View style={styles.header}>
             <View style={styles.headerText}>
@@ -50,50 +52,36 @@ export default function Home({ navigation }) {
             </View>
           </View>
         </Text>
-        <View
-          style={
-            DarkMode
-              ? [styles.contentContainer, { backgroundColor: "#1A201F" }]
-              : [styles.contentContainer, { backgroundColor: "#F4EEE0" }]
-          }
-        >
-          <View style={styles.gridContainer}>
-            <View style={styles.gridItem}>
-              <Text
-                style={
-                  DarkMode
-                    ? [styles.text, { color: "white" }]
-                    : [styles.text, { color: "black" }]
-                }
-              >
-                Cours
-              </Text>
-            </View>
-            <View style={styles.gridItem2}>
-              <Text
-                style={
-                  DarkMode
-                    ? [styles.text, { color: "white" }]
-                    : [styles.text, { color: "black" }]
-                }
-              >
-                Quiz
-              </Text>
-            </View>
-            <View style={styles.gridItem3}>
-              <Text
-                style={
-                  DarkMode
-                    ? [styles.text, { color: "white" }]
-                    : [styles.text, { color: "black" }]
-                }
-              >
-                A propos
-              </Text>
-            </View>
-          </View>
+        <View style={styles.flatlist}>
+          <FlatList
+            data={homeScreenData}
+            renderItem={({ item }) => (
+              <View style={styles.flatlist}>
+                <Pressable
+                  onPress={() => navigation.navigate("Chapitres")}
+                  style={styles.PressableFlatList}
+                >
+                  <View style={styles.ImageFlatList}>
+                    <Image source={item.image} style={styles.image} />
+                  </View>
+                  <View style={styles.TextFlatList}>
+                    <Text
+                      style={
+                        DarkMode
+                          ? [styles.text, { color: "white" }]
+                          : [styles.text, { color: "black" }]
+                      }
+                    >
+                      {item.title}
+                    </Text>
+                  </View>
+                </Pressable>
+              </View>
+            )}
+            keyExtractor={(item) => item.id}
+          />
         </View>
-      </ScrollView>
+      </SafeAreaView>
       <StackNav navigation={navigation} DarkMode={DarkMode} />
     </SafeAreaView>
   );
@@ -144,5 +132,22 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+  },
+  flatlist: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+  },
+  PressableFlatList: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+  },
+  image: {
+    width: 100,
+    height: 100,
+    margin: 10,
   },
 });
